@@ -5,10 +5,29 @@ description = "A project where I try to actually follow web design standards. Th
 authors = ["RenoirTan <renoirtan2005@gmail.com>"]
 license = "MIT"
 
+[[tool.poetry.packages]]
+include = "rotisserie"
+
 [tool.poetry.dependencies]
 python = "^3.7"
+flask = "^1.1"
+waitress = "^2.0"
+toml = "^0.10"
 
 [tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+rotisserie = "rotisserie.cli:run"
+
+[tool.black]
+line-length = 80
+include = ".pyi?$"
+exclude = """
+.eggs/
+.git/
+build
+dist
+"""
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
