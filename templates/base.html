@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>Rotisserie</title>
 
+  <link rel="icon" href="{{ url_for('static', filename='/images/RotisserieChicken.png') }}"/>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"/>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./styles/base.css') }}"/>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./styles/navbar.css') }}"/>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./styles/rotimgs.css') }}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles/base.css') }}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles/animations.css') }}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles/navbar.css') }}"/>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/styles/rotimgs.css') }}"/>
 
   {% block head %}
   {% endblock %}
@@ -20,20 +24,60 @@
   <script>
     var id = null;
     var animationHeader = $("#animation-header");
+    var start = Date.now();
+
+    function beginAnimation() {
+      var timer = setInterval(function () {
+        console.log("Moving arrow");
+        var elapsed = Date.now() - start;
+        if (elapsed >= 2000) {
+          clearInterval(timer);
+        } else {
+          var arrow = $("#temporary-stuff");
+          arrow.css("left", elapsed / 5 + "px");
+        }
+      }, 20);
+    }
+
+    function headerArrowMove(element) {
+      // Get the offset of the arrow from the left as an integer in pixels
+      var offsetLeft = +$(element).css("left").slice(0, -2);
+      offsetLeft += 5;
+      $(element).css("left", `${offsetLeft}px`);
+      return offsetLeft;
+    }
 
     function headerArrowsMove() {
-
+      if (Date.now() - start > 10000) {return;}
+      var offsetOfLeftestArrow = Number.MAX_VALUE;
+      $("#animation-header div.rotimgs-arrow").each(function(index, element) {
+        var newOffset = headerArrowMove(element);
+        if (newOffset > $(document).width()) {
+          $(element).remove();
+          return;
+        } else if (newOffset < offsetOfLeftestArrow) {
+          offsetOfLeftestArrow = newOffset;
+        }
+      });
+      var numArrows = $("#animation-header div.rotimgs-arrow").length;
+      if (offsetOfLeftestArrow > 128) {
+        spawnHeaderArrow();
+      }
     }
 
     function spawnHeaderArrow() {
-      console.log("Please spawn");
       $("<div/>", {
-        "class": "rotimgs-arrow"
-      }).appendTo("#animation-header");
+        id: "temporary-stuff",
+        "class": "rotimgs-arrow",
+        left: "0px"
+      })
+      .prependTo("#animation-header");
     }
 
     window.onload = function() {
-      spawnHeaderArrow();
+      // spawnHeaderArrow();
+      // beginAnimation();
+      setInterval(headerArrowsMove, 20);
     }
   </script>
 
