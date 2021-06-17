@@ -2,6 +2,20 @@ body {
     background-color: white;
 }
 
+button {
+    background-color: #FFB9E9;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 10px;
+    transition: background-color 250ms;
+}
+
+button:hover {
+    background-color: #DF93C7;
+}
+
 .main {
     align-self: center;
     align-items: center;
