@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "rt-rotisserie"
+version = "0.1.0"
+description = "A project where I try to actually follow web design standards. The website itself allows users to encrypt text using ROT13."
+authors = ["RenoirTan <renoirtan2005@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
