@@ -1,6 +1,10 @@
-{% extends "base.html" %}
+<script>
+  function toRot13() {
+    switchBody("{{ url_for('portion_rot13_crypt') }}");
+  }
+</script>
 
-
-{% block content %}
-<p>Hi</p>
-{% endblock %}
+<div class="main-inner">
+  <h1>Rotisserie Homepage</h1>
+  <button onclick="toRot13()">Click Here!</button>
+</div>

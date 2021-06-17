@@ -13,5 +13,23 @@
     display: inline-block;
     height: 128px;
     width: 100%;
+    position: absolute;
+}
+
+.rotimgs-arrow-left {
+    background-image: url("/cdn/static/images/arrow-left.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 128px;
+    width: 128px;
     position: relative;
+}
+
+.rotimgs-arrow-banner-left {
+    background-image: url("/cdn/static/images/arrow-left.png");
+    background-repeat: repeat-x;
+    display: inline-block;
+    height: 128px;
+    width: 100%;
+    position: absolute;
 }

@@ -23,7 +23,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script>
     var id = null;
-    var animationHeader = $("#animation-header");
+    var animationHeader = $("#arrow-header");
     var start = Date.now();
 
     function beginAnimation() {
@@ -49,9 +49,9 @@
 
     function headerArrowsMove() {
       var offsetOfLeftestArrow = Number.MAX_VALUE;
-      $("#animation-header div.rotimgs-arrow").each(function(index, element) {
+      $("#arrow-header div.rotimgs-arrow").each(function(index, element) {
         var newOffset = headerArrowMove(element);
-        if (newOffset > $("#animation-header").width()) {
+        if (newOffset > $("#arrow-header").width()) {
           console.log(newOffset);
           $(element).remove();
           return;
@@ -59,7 +59,7 @@
           offsetOfLeftestArrow = newOffset;
         }
       });
-      var numArrows = $("#animation-header div.rotimgs-arrow").length;
+      var numArrows = $("#arrow-header div.rotimgs-arrow").length;
       if (offsetOfLeftestArrow > 64) {
         spawnHeaderArrow();
       }
@@ -71,26 +71,37 @@
         "class": "rotimgs-arrow",
         left: "0px"
       })
-      .prependTo("#animation-header");
+      .prependTo("#arrow-header");
+    }
+
+    function switchBody(url) {
+      var request = new XMLHttpRequest();
+      request.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+          $("#main").html(this.responseText);
+        }
+      }
+      request.open("GET", url);
+      request.send();
+    }
+
+    function toHome() {
+      switchBody("{{ url_for('portion_root') }}");
     }
 
     window.onload = function() {
-      // console.log($("#animation-header").width());
-      // spawnHeaderArrow();
-      // setInterval(headerArrowsMove, 20);
+      toHome();
     }
   </script>
 
   {% block scripts %}
   {% endblock %}
 
-  <div id="animation-header" class="animation-box rotimgs-arrow-banner-right">
-    shit
-  </div>
-
-  <div class="main">
+  <div id="main" class="main">
     {% block content %}
     {% endblock %}
   </div>
+  <div id="arrow-header" class="animation-box rotimgs-arrow-banner-right"></div>
+  <div id="arrow-footer" class="animation-box rotimgs-arrow-banner-left"></div>
 
 </body>

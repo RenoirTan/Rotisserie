@@ -20,4 +20,14 @@ app.secret_key = SECRET_KEY
 
 @app.route("/", methods=["GET"])
 def root():
+    return render_template("base.html")
+
+
+@app.route("/portion/root", methods=["GET"])
+def portion_root():
     return render_template("root.html")
+
+
+@app.route("/portion/rot13/crypt", methods=["GET"])
+def portion_rot13_crypt():
+    return render_template("portion_rot13_crypt.html")
