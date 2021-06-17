@@ -48,11 +48,11 @@
     }
 
     function headerArrowsMove() {
-      if (Date.now() - start > 10000) {return;}
       var offsetOfLeftestArrow = Number.MAX_VALUE;
       $("#animation-header div.rotimgs-arrow").each(function(index, element) {
         var newOffset = headerArrowMove(element);
-        if (newOffset > $(document).width()) {
+        if (newOffset > $("#animation-header").width()) {
+          console.log(newOffset);
           $(element).remove();
           return;
         } else if (newOffset < offsetOfLeftestArrow) {
@@ -60,7 +60,7 @@
         }
       });
       var numArrows = $("#animation-header div.rotimgs-arrow").length;
-      if (offsetOfLeftestArrow > 128) {
+      if (offsetOfLeftestArrow > 64) {
         spawnHeaderArrow();
       }
     }
@@ -75,8 +75,8 @@
     }
 
     window.onload = function() {
-      // spawnHeaderArrow();
-      // beginAnimation();
+      console.log($("#animation-header").width());
+      spawnHeaderArrow();
       setInterval(headerArrowsMove, 20);
     }
   </script>

@@ -1,3 +1,17 @@
 #animation-header {
-    float: left;
+    max-width: 100vw;
+}
+
+.animation-left-to-right {
+    animation: anim-ltr 5s forwards linear;
+}
+
+@keyframes anim-ltr {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100vw);
+    }
 }
