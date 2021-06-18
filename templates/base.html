@@ -97,11 +97,13 @@
   {% block scripts %}
   {% endblock %}
 
-  <div id="main" class="main">
-    {% block content %}
-    {% endblock %}
+  <div class="body">
+    <div id="arrow-header" class="animation-box banner underneath rotimgs-arrow-banner-right"></div>
+    <div id="main" class="main">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <div id="arrow-footer" class="animation-box banner underneath rotimgs-arrow-banner-left"></div>
   </div>
-  <div id="arrow-header" class="animation-box rotimgs-arrow-banner-right"></div>
-  <div id="arrow-footer" class="animation-box rotimgs-arrow-banner-left"></div>
 
 </body>

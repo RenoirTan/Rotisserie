@@ -1,0 +1,15 @@
+<script>
+  function toRot13() {
+    switchBody("{{ url_for('portion_rot13_crypt') }}");
+  }
+
+  function toFiller() {
+    switchBody("{{ url_for('portion_filler') }}")
+  }
+</script>
+
+{% block content %}
+<h1>Rotisserie Homepage</h1>
+<button onclick="toRot13()">To ROT-13</button>
+<button onclick="toFiller()">To Filler Text</button>
+{% endblock %}

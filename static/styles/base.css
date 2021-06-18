@@ -1,5 +1,10 @@
+html {
+    height: 100%;
+}
+
 body {
     background-color: white;
+    min-height: 100%;
 }
 
 button {
@@ -16,15 +21,25 @@ button:hover {
     background-color: #DF93C7;
 }
 
+.body {
+    display: block;
+}
+
+.banner {
+    position: absolute;
+}
+
+/*
+
 .main {
     align-self: center;
     align-items: center;
     justify-content: center;
     background-color: inherit;
     display: flex;
-    /* padding: 10px 10% 25px 10%; */
+    padding: 10px 10% 25px 10%;
     position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0; /* Put in middle */
+    top: 0; right: 0; bottom: 0; left: 0;
 }
 
 .main-inner {
@@ -32,6 +47,12 @@ button:hover {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+*/
+
+.underneath {
+    z-index: -999;
 }
 
 #arrow-header {
